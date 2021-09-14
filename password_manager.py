@@ -56,7 +56,17 @@ def verificate_password(password):
         print(text['shortPass'])
 
 # __________________________________________________________________________________________________
-def input_var(keyword, user,password ,key_text, user_text,pas_text):
+# User
+
+# if user ==1:
+#         New_user = input(text[user_text])
+#         if letter in perm_chars: pass
+#         else:
+#             print (text['wrongUser'].format(New_keyword, string.punctuation))
+#             New_keyword, _ = input_var(0,1,0, '','userAgain','')
+
+# __________________________________________________________________________________________________
+def input_var(keyword,password ,key_text,pas_text):
     """
     Request the keyword(Site or service) and password to the user
 
@@ -83,12 +93,6 @@ def input_var(keyword, user,password ,key_text, user_text,pas_text):
                 New_keyword, _ = input_var(1,0,0,'keyAgain','','')
     else: New_keyword = ''
 
-    if user ==1:
-        New_user = input(text[user_text])
-        if letter in perm_chars: pass
-        else:
-            print (text['wrongUser'].format(New_keyword, string.punctuation))
-            New_keyword, _ = input_var(0,1,0, '','userAgain','')
 
     if password == 1:
         New_password = input(text[pas_text])
@@ -96,7 +100,7 @@ def input_var(keyword, user,password ,key_text, user_text,pas_text):
 
     else: New_password = ''
 
-    return New_keyword, New_user, New_password
+    return New_keyword, New_password
 # __________________________________________________________________________________________________
 def sign_up():
     # Creates a new user
@@ -109,7 +113,7 @@ def sign_up():
 
 # __________________________________________________________________________________________________
 if __name__ == '__main__':
-    key, user, passw = input_var(1,1,1,'keyword_in1','user','password')
-    print ('Site: {}\nUser: {} \nPassword: {}'.format(key, user, passw))
+    key, passw = input_var(1,1,'keyword_in1', 'password')
+    print ('Site: {}\nUser: {} \nPassword: {}'.format(key, passw))
 
 
