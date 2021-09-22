@@ -1,5 +1,7 @@
 import json
 import string
+import CRUD_user as db
+import pandas as pd
 
 language_var = 'en'
 
@@ -113,7 +115,13 @@ def sign_up():
 
 # __________________________________________________________________________________________________
 if __name__ == '__main__':
-    key, passw = input_var(1,1,'keyword_in1', 'password')
-    print ('Site: {}\nUser: {} \nPassword: {}'.format(key, passw))
+    # key, passw = input_var(1,1,'keyword_in1', 'password')
+    # print ('Site: {}\nUser: {} \nPassword: {}'.format(key, passw))
+    credentials = db.postgres_credentials(dbname="password_manager", user='postgres', password='toor', host='127.0.0.1', port= '5432')
+    data = db.show('Instagram',11)
+
+    df = pd.DataFrame(data)
+    df.columns = ['Key','UserId','Site','Password','site_user']
+    print(df)
 
 

@@ -1,5 +1,14 @@
 import psycopg2
 
+'''
+postgres_credentials = creates a list with variables to connect to the bd easly (db name, db user, db password, host, port)
+postgres_connect = conect to BD with the credentials (credentials)
+new_user = Create a new user in users table (name, password)
+delete_user = delete a user from users table (name, password)
+new_password = save a new password for an specific user (userid, site, password, site_user)
+delete_password = Delete a site's password for an specific user(userid, site, password)
+show = returns a list with a specific site info or all sites passwords (site='', userid=1)
+'''
 # ================================================================================================================
 def postgres_credentials(dbname="postgres", user='postgres', password='toor', host='127.0.0.1', port= '5432'):
 
