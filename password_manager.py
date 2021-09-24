@@ -2,6 +2,7 @@ import json
 import string
 import CRUD_user as db
 import pandas as pd
+from PM_App import input_value
 
 language_var = 'en'
 
@@ -120,8 +121,8 @@ if __name__ == '__main__':
     credentials = db.postgres_credentials(dbname="password_manager", user='postgres', password='toor', host='127.0.0.1', port= '5432')
     data = db.show('Instagram',11)
 
-    df = pd.DataFrame(data)
-    df.columns = ['Key','UserId','Site','Password','site_user']
-    print(df)
+    # df = pd.DataFrame(data)
+    # df.columns = ['Key','UserId','Site','Password','site_user']
+    print(input_value)
 
 
