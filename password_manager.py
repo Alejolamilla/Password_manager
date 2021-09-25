@@ -1,6 +1,6 @@
 import json
 import string
-import CRUD_user as db
+import CRUD as db
 import pandas as pd
 from PM_App import input_value
 
