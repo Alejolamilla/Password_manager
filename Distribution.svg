@@ -26,10 +26,10 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.7"
-     inkscape:cx="516.14433"
+     inkscape:cx="121.85862"
      inkscape:cy="1514.1411"
      inkscape:document-units="mm"
-     inkscape:current-layer="g967-0"
+     inkscape:current-layer="g902-8"
      showgrid="false"
      inkscape:window-width="1920"
      inkscape:window-height="1017"
@@ -231,7 +231,7 @@
          ry="0" />
       <g
          id="g902-2"
-         transform="translate(34.513528,-274.16606)">
+         transform="translate(34.513528,-282.63278)">
         <rect
            y="75.668594"
            x="80.041199"
@@ -280,17 +280,6 @@
            x="76.744751"
            y="-223.83453"
            style="stroke-width:0.26458332">Password Manager</tspan></text>
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-weight:normal;font-size:6.5962615px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.16490653"
-         x="116.82103"
-         y="-205.44115"
-         id="text862-0"><tspan
-           sodipodi:role="line"
-           id="tspan860-9"
-           x="116.82103"
-           y="-205.44115"
-           style="stroke-width:0.16490653">Log in</tspan></text>
       <g
          id="g894-8"
          transform="matrix(1.3546916,0,0,1.3546916,-94.466624,-300.63223)">
@@ -357,12 +346,12 @@
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:6.5962615px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.16490653"
        x="121.98087"
-       y="-105.02483"
+       y="-113.49149"
        id="text862-9"><tspan
          sodipodi:role="line"
          id="tspan860-2"
          x="121.98087"
-         y="-105.02483"
+         y="-113.49149"
          style="stroke-width:0.16490653">Log in</tspan></text>
     <rect
        style="opacity:0.98000004;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.1028178;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke markers fill"
@@ -370,7 +359,7 @@
        width="39.555092"
        height="10.735934"
        x="112.28936"
-       y="-112.43114"
+       y="-120.8978"
        ry="2.9562716" />
   </g>
 </svg>

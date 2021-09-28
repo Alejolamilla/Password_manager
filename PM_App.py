@@ -29,4 +29,5 @@ def create_new_user(name, password, n_clicks):
     else: return ''
 
 if __name__ == '__main__':
-    app.run_server(debug=True)
+    # app.run_server(debug=True, host= '26.228.152.186')
+    app.run_server(debug=True, host= '0.0.0.0')

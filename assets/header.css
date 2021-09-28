@@ -3,7 +3,8 @@
     line-height: 60px;
     border-bottom: thin lightgrey solid;
     text-align: center;
-    font-size: 50px;
+    font-size: 40px;
+    margin-bottom: 100px;
 }
 
 .dash-dropdown{
@@ -12,19 +13,32 @@
     width: 40vw;
     height: 60px;
     padding: 5px;
-    font-size: 50px;
+    font-size: 40px;
 }
 
 .Select-multi-value-wrapper{
     overflow: auto;
 }
 
-.input-data{
-    padding: 10px;
-    margin: 10px;
-    margin-top: 20px;
-    text-align: center;
+.input-name{
     font-size: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    padding: 0;
+    margin: auto;
+    margin-right: 0;
+}
+
+.input-box{
+    display: flex;
+    align-items: center;
+}
+
+.grid-container{
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: 100px 100px;
 }
 
 input{
@@ -32,9 +46,16 @@ input{
     margin: 15px;
     width: 50vw;
     border-width: 2px;
+    font-size: 40px;
+}
+
+.button-container{
+    text-align: center;
+    margin-top: 20px;
 }
 
 .button{
-    size: 100px;
+    font-size: 40px !important;
     text-align: center;
+    padding: 5px;
 }

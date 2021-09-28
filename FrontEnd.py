@@ -13,7 +13,7 @@ def read_languages():
 
     return languages
 
-# -------------------------------------------------------------------------------------------
+# ------------------------------------------Language-------------------------------------------------
 
 Front = html.Div(className='body',
     children=[
@@ -25,26 +25,30 @@ Front = html.Div(className='body',
                 options=read_languages(),
                 value='Sp'),
             ]),
-            # --------------------------------------------------------------------------------
+
+            # ------------------------------------Title--------------------------------------------
             html.Div(className ='app-header',
                 children=[html.H1("Password Manager")]),
 
-            html.Div(className= 'input-data',
+            # ------------------------------------Inputs--------------------------------------------
+            html.Div(className= 'grid-container',
+            children=[
+                html.Div(className= 'input-name', children=['User: ']),
+                html.Div(className= 'input-box',
                 children=[
-                    "Name: ",
                     dcc.Input(id='Name-input', value='', type='text'),
                     ]),
 
-            html.Br(),
+                html.Div(className= 'input-name', children=['Password: ']),
+                html.Div(className= 'input-box',
+                    children=[
+                        dcc.Input(id='password-input', value='', type='text'),
+                        ])
+            ]),
+            # -------------------------------------Button-------------------------------------------
+            html.Div(className='button-container',
+            children=[html.Button('submit', className='button', id='btn-nclicks-1', n_clicks=0)]),
 
-            html.Div(className= 'input-data',
-                children=[
-                "Password: ",
-                dcc.Input(id='password-input', value='', type='text'),
-                ]),
-
-            html.Div(className='button',
-            children=[html.Button('submit', id='btn-nclicks-1', n_clicks=0)]),
             html.Br(),
             html.Div(id='my-output'),
     ])
