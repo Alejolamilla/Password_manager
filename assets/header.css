@@ -52,10 +52,20 @@ input{
 .button-container{
     text-align: center;
     margin-top: 20px;
+    padding-bottom: 150px;
+}
+
+#b-container-1{
+    border-bottom: thin lightgrey solid;
 }
 
 .button{
     font-size: 40px !important;
     text-align: center;
     padding: 5px;
+}
+
+.span-text{
+    text-align: center;
+    font-size: 50px;
 }

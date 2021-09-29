@@ -17,6 +17,7 @@ def read_languages():
 
 Front = html.Div(className='body',
     children=[
+
         html.Div(className='language_drop',
             children=[
                 dcc.Dropdown(
@@ -30,6 +31,9 @@ Front = html.Div(className='body',
             html.Div(className ='app-header',
                 children=[html.H1("Password Manager")]),
 
+            # ------------------------------------Output-Message--------------------------------------------
+            html.Div(id='my-output'),
+
             # ------------------------------------Inputs--------------------------------------------
             html.Div(className= 'grid-container',
             children=[
@@ -42,13 +46,16 @@ Front = html.Div(className='body',
                 html.Div(className= 'input-name', children=['Password: ']),
                 html.Div(className= 'input-box',
                     children=[
-                        dcc.Input(id='password-input', value='', type='text'),
+                        dcc.Input(id='password-input', value='', type='password'),
                         ])
             ]),
             # -------------------------------------Button-------------------------------------------
-            html.Div(className='button-container',
+            html.Div(className='button-container', id='b-container-1',
             children=[html.Button('submit', className='button', id='btn-nclicks-1', n_clicks=0)]),
 
-            html.Br(),
-            html.Div(id='my-output'),
+            # -------------------------------------Register-------------------------------------------
+            html.Div(className= 'span-text', children=["Doesn't have an account yet?"]),
+
+            html.Div(className='button-container',
+            children=[html.Button('Register', className='button', id='btn-nclicks-2', n_clicks=0)]),
     ])

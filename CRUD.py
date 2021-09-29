@@ -32,14 +32,14 @@ def postgres_connect(dbname1="postgres", user1='postgres', password1='toor', hos
     cursor = conn.cursor()
 
 # ================================================================================================================
-def new_user(name, password):
+def new_user(name, password, email):
 
     #Connecting to BD
     postgres_connect(credentials)
 
     #Preparing query to add a new user
-    sql = '''INSERT INTO users (name,password)
-    VALUES ('{}', '{}');'''.format(name, password)
+    sql = '''INSERT INTO users (name,password,email)
+    VALUES ('{}', '{}', '{}');'''.format(name, password,email)
 
     #Adding new user
     try:
@@ -174,9 +174,36 @@ def show(site='', userid=1):
     cursor.close()
 
     return data
+# ================================================================================================================
+def user_verification(user, password):
+
+    #Connecting to BD
+    postgres_connect(credentials)
+
+    sql = '''SELECT * FROM users
+            WHERE name ='{}' OR email='{}' '''.format(user,user)
+
+    #Make data readeable
+    cursor.execute(sql)
+    data = cursor.fetchall()
+
+    #Close conections
+    conn.close()
+    cursor.close()
+
+    if data == []:
+        return 'unexistent'
+    else:
+        if data[0][2] == password:
+            return 'success'
+        else: return 'unmatch_password'
+
+
 # =============================================JUST FOR PROBES===================================================
 if __name__ == '__main__':
     credentials = postgres_credentials(dbname="password_manager", user='postgres', password='toor', host='127.0.0.1', port= '5432')
+    # print (new_user('alphale', 'alphapassword', 'alpha@htomail.com'))
     # print(delete_password('13', 'Facebook', 'mypassword'))
     # print(new_password('11', 'whatsapp', 'mywapppassword',''))
     # print (show('Instagram',11))
+    print(user_verification('alpha@htomail.com', 'alphapassword'))

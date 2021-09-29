@@ -1,3 +1,4 @@
+from dash.html.Script import Script
 import CRUD
 from FrontEnd import Front
 import dash
@@ -17,11 +18,13 @@ def create_new_user(name, password, n_clicks):
     credentials = CRUD.postgres_credentials(dbname="password_manager", user='postgres', password='toor', host='127.0.0.1', port= '5432')
 
     if n_clicks > 0 and n_clicks <= 10:
-        message = CRUD.new_user(name, password)
+        message = CRUD.user_verification(name, password)
         if message == 'success':
-            return 'User {} was created succesfully'.format(name)
-        elif message == 'duplicate error':
-            return 'User {} already exists'.format(name)
+            return 'User {} succesfully log in'.format(name)
+        elif message == 'unexistent':
+            return 'User {} doesn´t exists'.format(name)
+        elif message == 'unmatch_password':
+            return 'password doesn´t match'
         else: return 'Unknown error, try again'
 
     elif n_clicks > 10: return 'Demasiados intentos'
