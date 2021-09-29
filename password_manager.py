@@ -114,21 +114,22 @@
 #         print('')
 # # __________________________________________________________________________________________________
 
-import json
-from pathlib import Path
+# import json
+# from pathlib import Path
 
-def read_languages():
+# def read_languages():
 
-    languages = []
+#     languages = []
 
-    for p in Path('.').glob('Languages/*.json'):
-        file = f"{p.name}"[0:-5]
-        languages.append({'label':f"{p.name}"[0:-8], 'value':f"{p.name}"[-7:-5]})
+#     for p in Path('.').glob('Languages/*.json'):
+#         file = f"{p.name}"[0:-5]
+#         languages.append({'label':f"{p.name}"[0:-8], 'value':f"{p.name}"[-7:-5]})
 
-    print (languages)
+#     print (languages)
         # :\n{p.read_text()}\n
 
 # __________________________________________________________________________________________________
+import json
 if __name__ == '__main__':
     # key, passw = input_var(1,1,'keyword_in1', 'password')
     # print ('Site: {}\nUser: {} \nPassword: {}'.format(key, passw))
@@ -139,5 +140,10 @@ if __name__ == '__main__':
     # # df.columns = ['Key','UserId','Site','Password','site_user']
     # print(input_value)
 
-    read_languages()
-
+    # read_languages()
+    value = 'English'
+    archive = 'Languages/'+value+'.json'
+    with open(archive) as json_file:
+        text = json.load(json_file)
+    print(archive)
+    print(text)

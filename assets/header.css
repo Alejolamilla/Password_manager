@@ -20,6 +20,12 @@
     overflow: auto;
 }
 
+#error_message{
+    font-size: 40px;
+    color: red;
+    text-align: center;
+}
+
 .input-name{
     font-size: 40px;
     display: flex;

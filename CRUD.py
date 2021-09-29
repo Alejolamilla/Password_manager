@@ -10,13 +10,13 @@ delete_password = Delete a site's password for an specific user(userid, site, pa
 show = returns a list with a specific site info or all sites passwords (site='', userid=1)
 '''
 # ================================================================================================================
-def postgres_credentials(dbname="postgres", user='postgres', password='toor', host='127.0.0.1', port= '5432'):
+# def postgres_credentials(dbname="postgres", user='postgres', password='toor', host='127.0.0.1', port= '5432'):
 
-    global credentials
+#     global credentials
 
-    credentials = [dbname, user, password, host, port]
-    return credentials
-
+#     credentials = [dbname, user, password, host, port]
+#     return credentials
+credentials = ("password_manager",'postgres','toor','127.0.0.1','5432')
 # ================================================================================================================
 def postgres_connect(dbname1="postgres", user1='postgres', password1='toor', host1='127.0.0.1', port1= '5432'):
 
