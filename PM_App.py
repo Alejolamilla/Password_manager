@@ -1,17 +1,60 @@
 import json
+from logging import error
 import CRUD
-from FrontEnd import Front, Front_2
+from pathlib import Path
+from FrontEnd import front, Front_2
 import dash
 from dash import html
+from dash import dcc
 from dash.dependencies import Input, Output, State
 
-app = dash.Dash(__name__)
-app.layout = html.Div(id='page', children=Front)
+
+def read_languages():
+
+    languages = []
+
+    for p in Path('.').glob('Languages/*.json'):
+        languages.append({'label':f"{p.name}"[0:-5], 'value':f"{p.name}"[0:-5]})
+
+    return languages
+#==============================================================================================
+
+app = dash.Dash(__name__, suppress_callback_exceptions=True)
+app.layout = html.Div([
+    dcc.Location(id = 'url', refresh = False),
+
+    dcc.Store(id='language'),
+
+    html.Div(className='language_drop',
+        children=[
+            dcc.Dropdown(
+            id='language-dropdown',
+            optionHeight= 60,
+            options=read_languages(),
+            value='Español'),
+        ]),
+
+    html.Div(id = 'app-content', children=front())
+    ])
+
+@app.callback(
+    Output('app-content', 'children'),
+    Input('url','pathname'),
+    State(component_id='btn-login', component_property='n_clicks'),
+    State(component_id='Name-input', component_property='value'),
+    State(component_id='password-input', component_property='value'),
+    State('error_message', 'children'),
+)
+def change_page(pathname, clicks, name_value, password_value, error):
+
+    if pathname == '/user':
+        return Front_2
+    else: return front(name_value, password_value, clicks, error)
 
 # --------------------------------------------------------------------------------
 @app.callback(
     Output('language','data'),
-    Input('language-dropdown','value')
+    Input('language-dropdown','value'),
 )
 def select_language(value):
 
@@ -57,21 +100,16 @@ def verifying_user(name, password, n_clicks, text):
 
         else: return ''
 
+@app.callback(
+    Output('url','pathname'),
+    Input('error_message', 'children'),
+)
 
-# @app.callback(
-#     Output('page','children'),
-#     Input('error_message', 'children'),
-#     Input(component_id='btn-login', component_property='n_clicks'),
+def log_in(message):
 
-# )
-
-# def log_in(message, clicks):
-
-#     if message == 'loged_in' and clicks<10 and clicks>0:
-#         return Front_2
-#     else: return None
-
-
+    if message == 'loged_in':
+        return '/user'
+    else: return ''
 # --------------------------------------------------------------------------------
 
 # --------------------------------------------------------------------------------
