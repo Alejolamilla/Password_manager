@@ -1,67 +1,37 @@
 import json
 from logging import error
 import CRUD
-from pathlib import Path
-from FrontEnd import front, Front_2
+
+from FrontEnd import front, sign_up,Front_2
 import dash
 from dash import html
 from dash import dcc
 from dash.dependencies import Input, Output, State
 
 
-def read_languages():
 
-    languages = []
-
-    for p in Path('.').glob('Languages/*.json'):
-        languages.append({'label':f"{p.name}"[0:-5], 'value':f"{p.name}"[0:-5]})
-
-    return languages
-#==============================================================================================
+#==============================================Frontend=========================================
 
 app = dash.Dash(__name__, suppress_callback_exceptions=True)
 app.layout = html.Div([
     dcc.Location(id = 'url', refresh = False),
-
     dcc.Store(id='language'),
+    dcc.Store(id='messages'),
 
-    html.Div(className='language_drop',
-        children=[
-            dcc.Dropdown(
-            id='language-dropdown',
-            optionHeight= 60,
-            options=read_languages(),
-            value='Español'),
-        ]),
 
-    html.Div(id = 'app-content', children=front())
+    html.Div(id = 'app-content')
     ])
+# ========================================Languages==============================================
 
-@app.callback(
-    Output('app-content', 'children'),
-    Input('url','pathname'),
-    State(component_id='btn-login', component_property='n_clicks'),
-    State(component_id='Name-input', component_property='value'),
-    State(component_id='password-input', component_property='value'),
-    State('error_message', 'children'),
-)
-def change_page(pathname, clicks, name_value, password_value, error):
-
-    if pathname == '/user':
-        return Front_2
-    else: return front(name_value, password_value, clicks, error)
-
-# --------------------------------------------------------------------------------
 @app.callback(
     Output('language','data'),
     Input('language-dropdown','value'),
 )
-def select_language(value):
+def select_language(value='Español'):
 
     text = json.load(open('Languages/'+value+'.json', 'r'))
     return text
-
-# --------------------------------------------------------------------------------
+#---------------------------------------------------------------------
 @app.callback(
     Output('input-name','children'),
     Output('input-password','children'),
@@ -73,9 +43,26 @@ def select_language(value):
 def change_language(text):
     return text['user'], text['password'], text['sign_in'], text['not_account'], text['sign_up']
 
-# --------------------------------------------------------------------------------
+# ========================================Change-page==============================================
+
 @app.callback(
-    Output(component_id='error_message', component_property='children'),
+    Output('app-content', 'children'),
+    Input('url','pathname'),
+    Input('language', 'data'),
+)
+def change_page(pathname, language):
+
+    if pathname == '/user':
+        return Front_2
+    elif pathname == '/register':
+        return sign_up(language)
+    else: return front()
+
+
+# ========================================BD==============================================
+
+@app.callback(
+    Output(component_id='error_message_login', component_property='children'),
     State(component_id='Name-input', component_property='value'),
     State(component_id='password-input', component_property='value'),
     Input(component_id='btn-login', component_property='n_clicks'),
@@ -101,18 +88,56 @@ def verifying_user(name, password, n_clicks, text):
         else: return ''
 
 @app.callback(
+    Output('error_message_signup', 'children'),
+    Input('language','data'),
+    Input('btn-register', 'n_clicks'),
+    State('sign-name', 'value'),
+    State('sign-password', 'value'),
+    State('sign-password-verf', 'value'),
+    State('sign-email', 'value'),
+    prevent_initial_call=True
+)
+def sign_up_new_user(text, clicks, name, password, verification, email):
+
+    if len(name)<5 or len(password)<5 or len(name)>25 or len(password)>25:
+        return 'out_len'
+    else:
+        if  password == verification:
+
+            message = CRUD.new_user(name, password, email)
+
+            if clicks>0:
+                if message == 'duplicate error':
+                    return text['already_exist']
+                elif message =='success':
+                    return text['created']
+                else:
+                    return text['unknown_error']
+            else:
+                return dash.no_update
+        else:
+            return text['not_match']
+
+
+# ========================================Redirect==============================================
+
+@app.callback(
     Output('url','pathname'),
-    Input('error_message', 'children'),
+    Input('error_message_login', 'children'),
+    Input('btn-signup', 'n_clicks')
 )
 
-def log_in(message):
+def log_in(message, sign_up):
 
     if message == 'loged_in':
         return '/user'
-    else: return ''
-# --------------------------------------------------------------------------------
+    elif sign_up > 0:
+        return '/register'
+    else:
+        return dash.no_update
 
-# --------------------------------------------------------------------------------
+# ========================================Run-App==============================================
+
 if __name__ == '__main__':
     # app.run_server(debug=True, host= '26.228.152.186')
     app.run_server(debug=True, host= '0.0.0.0')

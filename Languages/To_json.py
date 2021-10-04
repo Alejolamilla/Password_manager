@@ -21,6 +21,13 @@ Español ={'user': 'Usuario o correo: ',
 'unmatch_password':'La contraseña no coincide',
 'unknown_error':'Surgio un error, intente nuevamente',
 'many_tries':'Demasiados intentos, intente de nuevo en unos minutos',
+'register': 'Registro de nuevo usuario',
+'username': 'Nombre de usuario',
+'email':'Correo electónico',
+'password_verif': 'Verifique la contraseña',
+'already_exist': 'El usuario ya existe',
+'created': 'El usuario fue creado correctamente',
+'not_match': 'Las contraseñas no coinciden',
 }
 
 English ={'user': 'User or email: ',
@@ -33,6 +40,13 @@ English ={'user': 'User or email: ',
 'unmatch_password':"The password doesn't match",
 'unknown_error':'Unknown error, try again',
 'many_tries':'Too many tries, try again in some minutes',
+'register':'New user register',
+'username':'Username',
+'email':'Email',
+'password_verif': 'Verify your password',
+'already_exist':'The user already exist',
+'created':'The user was created successfully',
+'not_match': "The passwords doesn't match",
 }
 
 with open("Español.json", "w") as outfile:
